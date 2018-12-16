@@ -1,6 +1,8 @@
 #include <iostream>
 #include<vector>
 #include <utility>
+#include <algorithm>
+
 //Дейкстра для одной вершины доделать.
 using namespace std;
 
@@ -11,7 +13,7 @@ cout <<"Количество вершин "<<endl;
 int n;
 cin>> n;
 vector < vector < pair<int,int> > > g (n);
-pair<int, int>a;
+pair<int, int> a;
 vector < pair<int,int> > b;
 int w[n];
 for (int i=0; i<n; i++){w[i]=0;}
@@ -21,20 +23,19 @@ cout <<"Вершина "<< i+1 <<" связана с  "<< endl;
 cin>> k;
 while (k!=0){cout <<"Веc ребра равен "<< endl;
 cin>> x;
-a.first=k;
+a.first=k-1;
 a.second=x;
 b.push_back(a);
 w[i]++;
 cout <<"Вершина "<< i+1 <<" связана с  "<< endl;
-cin>>k;
-}
-g.push_back(b);
+cin>>k;}
+g[i]=b;
 b.clear();}
 for (int i=0; i<n; i++){
     for (int j=0;j<w[i]; j++)
 {
-    cout<<"YRA";
-    cout << i+1 <<" :  "<< g[i][j].first <<" (" << g[i][j].second<< ")"<<endl;}
+    cout << i+1 <<" :  ";
+    cout<< g[i][j].first+1 <<" (" << g[i][j].second<< ")"<<endl;}
 }
 int s=0;
 vector<int> d (n, INF),  p (n);
@@ -54,8 +55,10 @@ vector<int> d (n, INF),  p (n);
 				len = g[v][j].second;
 			if (d[v] + len < d[to]) {
 				d[to] = d[v] + len;
-				p[to] = v;
-			}
-		}
-	}
+				p[to] = v;}}}
+vector <int> path;
+for (int t=0; t<n; t++){
+        cout<< t+1<< " - "<< d[t] << endl;
+
+    }
 }
